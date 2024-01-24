@@ -66,9 +66,9 @@ public class ItemController {
     // 스프링부트 3.2 이상부터  자바 컴파일러에 -parameters 옵션을 넣어주어야 어노테이션의 이름을 생략할 수 있다.
     // 주로 @RequestParam, @PathVariable, @Autowired, @ConfigurationProperties 사용시 ("itemId") 정확한 이름이 있어야 동작함.
     @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@PathVariable("itemId") String itemId, @ModelAttribute("form") BookForm form) {
+    public String updateItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") BookForm form) {
 
-        Book book = new Book();
+        /*Book book = new Book();
         book.setId(form.getId());
         book.setName(form.getName());
         book.setPrice(form.getPrice());
@@ -76,7 +76,10 @@ public class ItemController {
         book.setAuthor(form.getAuthor());
         book.setStockQuantity(form.getStockQuantity());
 
-        itemService.saveItem(book);
+        itemService.saveItem(book);*/
+
+        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
+
         return "redirect:/items";
     }
 
